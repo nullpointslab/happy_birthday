@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 23rd Birthday Amina! 🎂✨</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+
+  <!-- Google Fonts: Editorial Serif, Cute Handwritten, Clean Modern Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Glowing Orbs & Starfield -->
+  <div class="ambient-stars" id="ambient-stars"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- ============================================== -->
+  <!-- 1. PASSCODE LOCK SCREEN (Roses, Balloons & Glow) -->
+  <!-- ============================================== -->
+  <div id="lock-screen" class="lock-screen">
+    
+    <!-- Floating Rose Petals & Balloons on Lock Screen -->
+    <div class="lock-petals-container" id="lock-petals"></div>
+    <div class="lock-balloons-container" id="lock-balloons"></div>
+
+    <div class="lock-glass-card">
+      
+      <div class="stamp-pill">
+        <span class="heart-pulse">🌹</span>
+        <span>FOR MY SPECIAL ONE</span>
+      </div>
+
+      <div class="lock-avatar-wrap">
+        <div class="avatar-ring">
+          <i class="fa-solid fa-lock" id="lock-icon"></i>
+        </div>
+      </div>
+      
+      <h1 class="lock-heading">Amina's Birthday Portal</h1>
+      <p class="lock-subheading">Enter our secret code to see your surprise ✨</p>
+      
+      <div class="hint-pill">
+        <i class="fa-solid fa-key"></i>
+        <span>Secret Code: <strong>1527</strong></span>
+      </div>
+
+      <!-- PIN Indicator Dots -->
+      <div class="pin-dots-container">
+        <div class="pin-bubble" id="dot-0"></div>
+        <div class="pin-bubble" id="dot-1"></div>
+        <div class="pin-bubble" id="dot-2"></div>
+        <div class="pin-bubble" id="dot-3"></div>
+      </div>
+
+      <!-- Error feedback -->
+      <div class="error-banner" id="error-msg">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Arre ghalat code cutie! Hint: 1527 🙈</span>
+      </div>
+
+      <!-- Interactive Keypad -->
+      <div class="aesthetic-keypad">
+        <button class="num-key" data-key="1"><span>1</span></button>
+        <button class="num-key" data-key="2"><span>2</span></button>
+        <button class="num-key" data-key="3"><span>3</span></button>
+        <button class="num-key" data-key="4"><span>4</span></button>
+        <button class="num-key" data-key="5"><span>5</span></button>
+        <button class="num-key" data-key="6"><span>6</span></button>
+        <button class="num-key" data-key="7"><span>7</span></button>
+        <button class="num-key" data-key="8"><span>8</span></button>
+        <button class="num-key" data-key="9"><span>9</span></button>
+        <button class="num-key action-key" id="clear-btn" title="Clear">
+          <i class="fa-regular fa-trash-can"></i>
+        </button>
+        <button class="num-key" data-key="0"><span>0</span></button>
+        <button class="num-key action-key" id="backspace-btn" title="Delete">
+          <i class="fa-solid fa-delete-left"></i>
+        </button>
+      </div>
+
+      <button class="unlock-glow-btn" id="unlock-btn">
+        <span id="unlock-btn-text">Unlock Surprise</span>
+        <i class="fa-solid fa-heart" id="unlock-btn-icon"></i>
+      </button>
+
+      <p class="lock-footer-note">Handcrafted with love for Amina • 27 Nov 2003 💖</p>
+    </div>
+
+    <!-- Tease Verification Card Modal -->
+    <div class="tease-modal-overlay hidden" id="tease-modal-overlay">
+      <div class="tease-modal-card" id="tease-modal-card">
+        <div class="tease-badge" id="tease-badge">⚠️ SECURITY CHECK ⚠️</div>
+        <div class="tease-icon" id="tease-icon">🥺💖</div>
+        <h3 class="tease-title" id="tease-title">Warning!</h3>
+        <p class="tease-msg" id="tease-msg">Aap itni asani se surprise nahi dekh sakti!</p>
+        <div class="tease-actions" id="tease-actions">
+          <button class="tease-btn tease-primary" id="tease-confirm-btn">Main Amina Hun! 😤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- 2. MAIN CELEBRATION APP                        -->
+  <!-- ============================================== -->
+  <main id="main-content" class="main-content hidden">
+
+    <!-- FLOATING SPOTIFY MUSIC DOCK -->
+    <div class="music-dock" id="music-dock">
+      <div class="disc-spin" id="disc-spin">
+        <i class="fa-solid fa-compact-disc"></i>
+      </div>
+      <div class="dock-meta">
+        <span class="dock-title">Amina's Birthday Track 🎵</span>
+        <span class="dock-artist">Now Playing • Infinite Love</span>
+      </div>
+      <button class="dock-play-btn" id="music-toggle-btn" aria-label="Toggle Audio">
+        <i class="fa-solid fa-pause" id="music-icon"></i>
+      </button>
+    </div>
+
+    <!-- Hidden HTML5 Audio -->
+    <audio id="bg-audio" loop preload="auto">
+      <source src="assets/music.mp3" type="audio/mpeg">
+      <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-stage">
+      <div class="floating-stickers-wrap">
+        <span class="sticker tag-1">✨ Chapter 23</span>
+        <span class="sticker tag-2">👑 23rd Birthday</span>
+        <span class="sticker tag-mine">🔒 Forever Mine ❤️</span>
+        <span class="sticker tag-3">🌸 27 Nov 2003</span>
+        <span class="sticker tag-4">🤍 100% Angel Energy</span>
+      </div>
+
+      <div class="hero-content">
+        <div class="editorial-badge">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>CELEBRATING MY WHOLE WORLD</span>
+        </div>
+
+        <h1 class="hero-huge-title">
+          Happy Birthday, <br>
+          <span class="aesthetic-name">Amina</span> 💖
+        </h1>
+
+        <p class="hero-handwriting">
+          "The world became so much prettier the day you were born."
+        </p>
+
+        <p class="hero-editorial-sub">
+          Born on 27th November 2003 • Aaj tumhari 23rd birthday hai, aur meri koshish hai ke tumhara yeh din 
+          utna hi special aur pyara guzre jitni tum meri zindagi mein pyari ho! ✨
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#cake-area" class="cta-primary-btn">
+            <span>Make Your Wish 🎂</span>
+            <i class="fa-solid fa-cake-candles"></i>
+          </a>
+          <a href="#love-game-area" class="cta-love-btn">
+            <span>Do You Love Me? 🥺👉👈</span>
+          </a>
+          <a href="#hundred-reasons-area" class="cta-secondary-btn">
+            <span>100 Reasons Why I Love You 💌</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="balloons-stage" id="balloons-stage"></div>
+    </section>
+
+    <!-- ==================== INTERACTIVE CAKE & CANDLE BLOW ==================== -->
+    <section class="cake-stage" id="cake-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">🕯️ BLOW THE CANDLES</span>
+      </div>
+      
+      <h2 class="section-display-title">Make A Wish, Amina!</h2>
+      <p class="section-display-sub">
+        Apni aankhein band karo, ek pyari si wish maango, aur candles par tap karke foonk maaro!
+      </p>
+
+      <div class="interactive-cake-box" id="cake-box-container">
+        
+        <!-- Bunting / Fairy Lights that turn on upon blow -->
+        <div class="cake-party-bunting" id="party-bunting">
+          <span>✨</span><span>🎀</span><span>🎈</span><span>🎉</span><span>👑</span><span>🎈</span><span>🎀</span><span>✨</span>
+        </div>
+
+        <!-- Cute Mascot Celebration Parade (Revealed when candles blow!) -->
+        <div class="mascot-parade" id="mascot-parade">
+          <!-- Mascot 1: Teddy Bear -->
+          <div class="mascot-item mascot-1" data-quote="Happy 23rd Amina! 👑">
+            <div class="mascot-bubble">Happy 23rd Amina! 👑</div>
+            <div class="mascot-avatar">🧸</div>
+          </div>
+          <!-- Mascot 2: Bunny -->
+          <div class="mascot-item mascot-2" data-quote="Make A Big Wish! 🌟">
+            <div class="mascot-bubble">Make A Big Wish! 🌟</div>
+            <div class="mascot-avatar">🐰</div>
+          </div>
+          <!-- Mascot 3: Party Cat -->
+          <div class="mascot-item mascot-3" data-quote="Cutie Queen! 💖">
+            <div class="mascot-bubble">Cutie Queen! 💖</div>
+            <div class="mascot-avatar">🐱</div>
+          </div>
+          <!-- Mascot 4: Puppy -->
+          <div class="mascot-item mascot-4" data-quote="Only Yours! 🐶❤️">
+            <div class="mascot-bubble">Only Yours! 🐶❤️</div>
+            <div class="mascot-avatar">🐶</div>
+          </div>
+          <!-- Mascot 5: Unicorn -->
+          <div class="mascot-item mascot-5" data-quote="Pure Magic! ✨">
+            <div class="mascot-bubble">Pure Magic! ✨</div>
+            <div class="mascot-avatar">🦄</div>
+          </div>
+          <!-- Mascot 6: Chick -->
+          <div class="mascot-item mascot-6" data-quote="Party Time! 🥳">
+            <div class="mascot-bubble">Party Time! 🥳</div>
+            <div class="mascot-avatar">🐥</div>
+          </div>
+          <!-- Mascot 7: Flower -->
+          <div class="mascot-item mascot-7" data-quote="Stay Sweet! 🌸">
+            <div class="mascot-bubble">Stay Sweet! 🌸</div>
+            <div class="mascot-avatar">🌸</div>
+          </div>
+          <!-- Mascot 8: Cupcake -->
+          <div class="mascot-item mascot-8" data-quote="Forever 23! 🎂">
+            <div class="mascot-bubble">Forever 23! 🎂</div>
+            <div class="mascot-avatar">🧁</div>
+          </div>
+        </div>
+
+        <div class="cake-construction" id="interactive-cake">
+          <div class="candles-wrapper">
+            <div class="single-candle left-c">
+              <div class="candle-flame" id="flame-1"></div>
+              <div class="candle-wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="single-candle center-c">
+              <div class="candle-flame" id="flame-2"></div>
+              <div class="candle-wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="single-candle right-c">
+              <div class="candle-flame" id="flame-3"></div>
+              <div class="candle-wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+          </div>
+
+          <div class="cake-tier tier-1">
+            <div class="frosting-layer"></div>
+            <div class="cake-decorations">🍓 🫐 🍓</div>
+          </div>
+          <div class="cake-tier tier-2">
+            <div class="frosting-layer"></div>
+            <div class="macaron-decor">🌸 🌸 🌸</div>
+          </div>
+          <div class="cake-tier tier-3" id="cake-tier-3">
+            <div class="frosting-layer"></div>
+            <div class="golden-pearls"></div>
+            <div class="cake-cut-slice" id="cake-cut-slice">🍰</div>
+          </div>
+          <div class="ceramic-plate"></div>
+          <!-- Shimmering Cut Seam Line (appears upon cut) -->
+          <div class="cake-cut-seam" id="cake-cut-seam"></div>
+          <!-- Cake Cutting Guide Line (shows when candles blown) -->
+          <div class="cake-cutting-guide hidden" id="cake-cutting-guide">
+            <div class="guide-dashed-line"></div>
+            <div class="guide-label">✂️ SLICE HERE ✂️</div>
+          </div>
+        </div>
+
+        <!-- Interactive Drag-to-Cut Knife Stage (Revealed after candles blow!) -->
+        <div class="cake-knife-action-wrap cake-knife-stage hidden" id="cake-knife-wrap">
+          <div class="knife-instruction-banner" id="cake-knife-instruction">
+            <span class="knife-icon-bounce">🔪</span>
+            <span>Amina, <strong>knife ko drag karke cake cut karo</strong> ya tap karo! 🍰✨</span>
+          </div>
+
+          <div class="knife-interactive-area" id="knife-interactive-area">
+            <!-- Draggable Luxury Birthday Knife -->
+            <div class="draggable-cake-knife" id="draggable-cake-knife" role="button" tabindex="0" title="Hold & Drag across the cake to cut!">
+              <div class="knife-svg-wrap">
+                <svg viewBox="0 0 220 60" class="knife-svg-graphic" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ffffff"/>
+                      <stop offset="30%" stop-color="#f2f2f7"/>
+                      <stop offset="60%" stop-color="#ffffff"/>
+                      <stop offset="100%" stop-color="#b8c0c8"/>
+                    </linearGradient>
+                    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#ff758c"/>
+                      <stop offset="45%" stop-color="#ff2d55"/>
+                      <stop offset="100%" stop-color="#5a0b22"/>
+                    </linearGradient>
+                    <linearGradient id="goldHilt" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#fff2a8"/>
+                      <stop offset="50%" stop-color="#ffd700"/>
+                      <stop offset="100%" stop-color="#c59b27"/>
+                    </linearGradient>
+                    <filter id="bladeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#ffd700" flood-opacity="0.55"/>
+                    </filter>
+                  </defs>
+                  <g filter="url(#bladeGlow)">
+                    <!-- Knife Handle -->
+                    <rect x="8" y="20" width="58" height="20" rx="6" fill="url(#handleGrad)" stroke="#ffd700" stroke-width="1.8"/>
+                    <circle cx="22" cy="30" r="3" fill="#ffd700"/>
+                    <circle cx="48" cy="30" r="3" fill="#ffd700"/>
+                    <!-- Gold Crossguard -->
+                    <rect x="66" y="13" width="9" height="34" rx="3" fill="url(#goldHilt)"/>
+                    <!-- Steel Knife Blade -->
+                    <path d="M75 16 L195 23 Q215 30 195 37 L75 44 Z" fill="url(#bladeGrad)" stroke="#ffffff" stroke-width="1.2"/>
+                    <!-- Blade Reflection Accent -->
+                    <line x1="82" y1="29" x2="188" y2="29" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
+                  </g>
+                </svg>
+                <span class="knife-sparkle-star">✨</span>
+              </div>
+              <div class="knife-drag-pill">
+                <span>👆 Drag Knife Down or Tap to Cut 🍰</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Button Backup -->
+          <button class="cake-knife-btn" id="cake-cut-knife-btn">
+            <span class="knife-icon">🔪</span>
+            <span class="knife-text">Or Click Here To Slice The Cake! 🍰✨</span>
+          </button>
+        </div>
+
+        <div class="candle-tap-prompt" id="candle-prompt">
+          <i class="fa-solid fa-wind pulse-wind"></i>
+          <span>Click / Tap on the flames to blow them out!</span>
+        </div>
+
+        <!-- Interactive Secret Wish Box (After Blow) -->
+        <div class="secret-wish-modal-card hidden" id="secret-wish-card">
+          <div class="wish-card-glow"></div>
+          <div class="wish-card-header">
+            <span class="wish-wand">🪄</span>
+            <h3>Amina, Make A Secret 23rd Birthday Wish...</h3>
+            <p>Aankhein band karo, dil se ek wish maango aur yahan lock kardo:</p>
+          </div>
+          <div class="wish-input-row">
+            <input type="text" id="amina-secret-wish-input" placeholder="Type your secret birthday wish here... 🤍" maxlength="120" autocomplete="off">
+            <button class="wish-submit-btn" id="lock-wish-btn">
+              <span>Send Wish To Universe 🌌</span>
+              <i class="fa-solid fa-sparkles"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="wish-reveal-box hidden" id="wish-success-box">
+          <div class="wish-confetti-badge">🎉 WISH SENT TO THE UNIVERSE! 🌟</div>
+          <h3>May All Your Prayers Come True, Amina!</h3>
+          <p id="wish-confirmed-text">Meri dua hai ke tumhari har khwahish poori ho aur tum hamesha mere sath khush raho! ❤️</p>
+          <div class="cake-slice-celebrate-note" id="cake-slice-note">
+            🍰 First slice of your 23rd birthday cake belongs to you, my forever girl! 🥰
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== LIVE TIME & AGE COUNTER ==================== -->
+    <section class="counter-stage">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">⏳ REAL-TIME MILESTONE</span>
+      </div>
+      <h2 class="section-display-title">Celebrating 23 Glorious Years</h2>
+      <p class="section-display-sub">
+        Every year, day, hour, minute, and second since <strong>27 November 2003</strong> that Amina has blessed this universe:
+      </p>
+
+      <!-- LIVE COUNTDOWN TO 27 NOVEMBER -->
+      <div class="birthday-countdown-pill" id="bday-countdown-box">
+        <div class="cd-header">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <span>COUNTDOWN TO 27TH NOVEMBER (23RD BIRTHDAY)</span>
+        </div>
+        <div class="cd-timer-row">
+          <div class="cd-block"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Days</span></div>
+          <span class="cd-colon">:</span>
+          <div class="cd-block"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Hours</span></div>
+          <span class="cd-colon">:</span>
+          <div class="cd-block"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Minutes</span></div>
+          <span class="cd-colon">:</span>
+          <div class="cd-block"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Seconds</span></div>
+        </div>
+      </div>
+
+      <div class="bento-counter-grid five-cols">
+        <div class="time-card card-hero">
+          <span class="time-unit">YEARS OF BEAUTY</span>
+          <span class="time-digit highlight-num" id="count-years">23</span>
+          <span class="time-desc">23rd Chapter of pure grace & wisdom 👑</span>
+        </div>
+
+        <div class="time-card card-days">
+          <span class="time-unit">TOTAL DAYS LIVED</span>
+          <span class="time-digit" id="count-days">0</span>
+          <span class="time-desc">Sunrises you've made brighter ☀️</span>
+        </div>
+
+        <div class="time-card card-hours">
+          <span class="time-unit">HOURS OF SMILES</span>
+          <span class="time-digit" id="count-hours">0</span>
+          <span class="time-desc">Hours of laughs, thoughts & memories 🌙</span>
+        </div>
+
+        <div class="time-card card-minutes">
+          <span class="time-unit">MINUTES OF JOY</span>
+          <span class="time-digit" id="count-minutes">0</span>
+          <span class="time-desc">Minutes of making this world soft 🌸</span>
+        </div>
+
+        <div class="time-card card-seconds">
+          <span class="time-unit">SECONDS OF MAGIC</span>
+          <span class="time-digit accent-num" id="count-seconds">0</span>
+          <span class="time-desc">Seconds of being endlessly loved 💖</span>
+        </div>
+      </div>
+
+      <div class="aesthetic-quote-banner">
+        <p class="banner-cursive">"23 years ago on 27th Nov 2003, the universe gifted us the one and only Amina."</p>
+      </div>
+    </section>
+
+    <!-- ==================== WHATSAPP VOICE NOTE PLAYER ==================== -->
+    <section class="voicenote-stage" id="voicenote-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">🎙️ SPECIAL VOICE MESSAGE</span>
+      </div>
+      
+      <div class="whatsapp-card glass-card">
+        <div class="wa-header">
+          <div class="wa-avatar">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+          <div class="wa-info">
+            <div class="wa-name">
+              <span>Voice Note for Amina</span>
+              <i class="fa-solid fa-circle-check wa-check"></i>
+            </div>
+            <span class="wa-status">27 Nov • Recorded with all my heart ❤️</span>
+          </div>
+        </div>
+
+        <div class="wa-bubble">
+          <button class="wa-play-btn" id="wa-play-btn" aria-label="Play Voice Note">
+            <i class="fa-solid fa-play" id="wa-play-icon"></i>
+          </button>
+          
+          <div class="wa-waveform" id="wa-waveform">
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span><span class="wa-bar"></span><span class="wa-bar"></span>
+            <span class="wa-bar"></span>
+          </div>
+
+          <div class="wa-time-meta">
+            <span id="wa-time-display">1:26</span>
+            <span class="wa-read-receipts"><i class="fa-solid fa-check-double"></i></span>
+          </div>
+        </div>
+
+        <audio id="wa-audio-element" preload="metadata">
+          <source src="assets/voicenote.mp3" type="audio/mpeg">
+        </audio>
+
+        <p class="wa-note-hint" id="wa-note-hint">
+          <i class="fa-solid fa-headphones"></i> Put on your headphones and tap play to listen to my voice!
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== HEARTBEAT SYNC MONITOR ==================== -->
+    <section class="heartbeat-stage" id="heartbeat-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">💓 REAL-TIME BIOMETRIC SENSOR</span>
+      </div>
+      <h2 class="section-display-title">My Heart Rate Around Amina</h2>
+      <p class="section-display-sub">Touch the sensor to feel my live heart reaction to you:</p>
+
+      <div class="heartbeat-container glass-card">
+        <!-- Interactive Heart Core Visualizer -->
+        <div class="heart-visualizer-wrap">
+          <div class="heart-pulse-halo" id="heart-pulse-halo"></div>
+          <div class="heart-interactive-core" id="interactive-heart-btn" title="Touch to speed up my heart!">
+            <div class="heart-shape">❤️</div>
+            <div class="heart-rate-live">
+              <span id="live-bpm-value">76</span>
+              <small>BPM</small>
+            </div>
+            <span class="heart-touch-hint">Tap me! 👆</span>
+          </div>
+          <div class="heart-particles-emitter" id="heart-particles-area"></div>
+        </div>
+
+        <div class="ecg-screen" id="ecg-screen-box">
+          <div class="ecg-grid-overlay"></div>
+          <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+            <path class="ecg-glow-line" id="ecg-glow-line" d="M0,60 L90,60 L105,30 L115,95 L125,15 L140,75 L155,60 L290,60 L305,30 L315,95 L325,15 L340,75 L355,60 L490,60 L505,30 L515,95 L525,15 L540,75 L555,60 L600,60"></path>
+            <path class="ecg-line" id="ecg-line" d="M0,60 L90,60 L105,30 L115,95 L125,15 L140,75 L155,60 L290,60 L305,30 L315,95 L325,15 L340,75 L355,60 L490,60 L505,30 L515,95 L525,15 L540,75 L555,60 L600,60"></path>
+          </svg>
+          <div class="ecg-scanner-beam"></div>
+          <div class="ecg-status-pill" id="ecg-status-text">Status: Normal & Calm</div>
+        </div>
+
+        <!-- Interactive BPM Mode Selectors -->
+        <div class="bpm-cards-grid">
+          <div class="bpm-card active" data-bpm="76" data-mode="calm" id="card-bpm-calm">
+            <div class="bpm-card-glow"></div>
+            <span class="bpm-num">76</span>
+            <span class="bpm-unit">BPM</span>
+            <p class="bpm-label">Resting State</p>
+            <span class="bpm-sub">Ordinary days without Amina's text</span>
+          </div>
+
+          <div class="bpm-card highlight-bpm" data-bpm="142" data-mode="smile" id="card-bpm-smile">
+            <div class="bpm-card-glow"></div>
+            <span class="bpm-num pulse-bpm">142</span>
+            <span class="bpm-unit">BPM ✨</span>
+            <p class="bpm-label">When Amina Smiles</p>
+            <span class="bpm-sub">Sudden adrenaline rush & warm butterflies ❤️</span>
+          </div>
+
+          <div class="bpm-card extreme-bpm" data-bpm="205" data-mode="overload" id="card-bpm-overload">
+            <div class="bpm-card-glow"></div>
+            <span class="bpm-num crazy-bpm">205+</span>
+            <span class="bpm-unit">BPM 🔥</span>
+            <p class="bpm-label">When Amina Says "Suno na..."</p>
+            <span class="bpm-sub">Cardiac overload! System malfunction 🥰</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- PLAYFUL GAME: "DO YOU LOVE ME?" (FUNNY NO BUTTON & YES REWARD)  -->
+    <!-- ============================================================== -->
+    <section class="love-game-stage" id="love-game-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">🎮 SPECIAL TEST FOR AMINA</span>
+      </div>
+
+      <div class="love-game-card glass-card">
+        <div class="game-top-icon">
+          <span class="floating-cat-heart">🥺👉👈</span>
+        </div>
+
+        <h2 class="game-heading">Amina, Sach Sach Batao...</h2>
+        <p class="game-subheading">Do you love me as much as I love you? ❤️</p>
+
+        <div class="game-buttons-wrap" id="game-btn-area">
+          <button class="game-btn yes-btn" id="game-yes-btn">
+            <i class="fa-solid fa-heart"></i>
+            <span>YES, Obviously! 🥰</span>
+          </button>
+          
+          <button class="game-btn no-btn" id="game-no-btn">
+            <span>No 🙄</span>
+          </button>
+        </div>
+
+        <!-- Funny feedback message when she tries to click NO -->
+        <p class="funny-no-hint" id="funny-no-hint"></p>
+      </div>
+    </section>
+
+    <!-- SUCCESS MODAL WHEN SHE CLICKS YES -->
+    <div class="love-win-modal" id="love-win-modal">
+      <div class="love-win-backdrop" id="love-win-backdrop"></div>
+      <div class="love-win-box">
+        <button class="love-win-close" id="love-win-close"><i class="fa-solid fa-xmark"></i></button>
+        <div class="win-crown-icon">👑 ❤️ 💍</div>
+        <h3 class="win-title">I KNEW IT! YOU ARE ONLY MINE!</h3>
+        <p class="win-body">
+          "Mujhe pata tha tum 'Yes' hi bologee! Aur koi option tha bhi nahi! 😉<br><br>
+          Amina, tum meri zindagi ka sab se pyara hissa ho. Main hamesha tumhara dhyan rakhunga, 
+          tumhe be-hisaab pyar doonga aur kabhi tumhara haath nahi chhodunga. You are officially 
+          and permanently MINE forever!"
+        </p>
+        <div class="win-footer-badges">
+          <span class="win-badge">💍 Locked Forever</span>
+          <span class="win-badge">💖 No Refunds</span>
+          <span class="win-badge">🌹 Only Yours</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- NEW SECTION: 100 REASONS WHY I LOVE YOU, AMINA                 -->
+    <!-- ============================================================== -->
+    <section class="hundred-reasons-stage" id="hundred-reasons-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">💌 100 REASONS ARCHIVE</span>
+      </div>
+      <h2 class="section-display-title">100 Reasons Why I Love You</h2>
+      <p class="section-display-sub">
+        Every little detail, smile, habit, and reason why you are completely irreplaceable to me:
+      </p>
+
+      <div class="reason-showcase-box glass-card">
+        <div class="reason-showcase-header">
+          <span class="reason-counter-badge" id="reason-num-badge">Reason #1 of 100</span>
+          <button class="view-all-reasons-btn" id="open-all-reasons-btn">
+            <i class="fa-solid fa-list-check"></i>
+            <span>View All 100 Reasons</span>
+          </button>
+        </div>
+
+        <div class="reason-display-content" id="reason-display-content">
+          <div class="reason-big-icon">💖</div>
+          <p class="reason-text-main" id="current-reason-text">
+            "Because your smile has this magical power to turn my worst day into my best day."
+          </p>
+        </div>
+
+        <div class="reason-nav-controls">
+          <button class="reason-arrow-btn" id="reason-prev-btn" title="Previous Reason">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Previous</span>
+          </button>
+          
+          <button class="reason-random-btn" id="reason-random-btn" title="Random Reason">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Surprise Me! 🎲</span>
+          </button>
+
+          <button class="reason-arrow-btn" id="reason-next-btn" title="Next Reason">
+            <span>Next</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL: VIEW ALL 100 REASONS -->
+    <div class="all-reasons-modal" id="all-reasons-modal">
+      <div class="all-reasons-backdrop" id="all-reasons-backdrop"></div>
+      <div class="all-reasons-box">
+        <div class="all-reasons-header">
+          <div>
+            <h3 class="all-reasons-title">100 Reasons Why Amina Is My World 💌</h3>
+            <p class="all-reasons-sub">Scroll through every single reason written straight from the heart:</p>
+          </div>
+          <button class="all-reasons-close" id="all-reasons-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="all-reasons-grid" id="all-reasons-grid-list">
+          <!-- Dynamically populated with all 100 reasons via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 20-PHOTO AESTHETIC MEMORY WALL WITH LIGHTBOX                   -->
+    <!-- ============================================================== -->
+    <section class="gallery-20-stage" id="gallery-20">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">📸 THE 20 MEMORIES ARCHIVE</span>
+      </div>
+      <h2 class="section-display-title">Moments Frozen in Time</h2>
+      <p class="section-display-sub">
+        Amina ki gorgeous pictures aur hamari saath bitayi hui golden memories:
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="gallery-filter-tabs">
+        <button class="filter-tab active" data-filter="all">
+          <span>All Moments (20)</span>
+          <i class="fa-solid fa-sparkles"></i>
+        </button>
+        <button class="filter-tab" data-filter="amina">
+          <span>Amina Solo 👑</span>
+        </button>
+        <button class="filter-tab" data-filter="together">
+          <span>Haseeb & Amina 💑</span>
+        </button>
+        <button class="filter-tab" data-filter="candid">
+          <span>Silly & Candid 🌸</span>
+        </button>
+      </div>
+
+      <!-- 20-Photo Grid -->
+      <div class="gallery-20-grid" id="gallery-20-grid">
+        
+        <div class="memory-card-wrap" data-category="amina" data-caption="A queen in her natural element • The prettiest smile in any room ✨" data-date="Birthday Queen">
+          <div class="memory-card">
+            <span class="memory-badge">#01 ✨</span>
+            <div class="memory-img-box">
+              <img src="images/pic1.jpg" alt="Amina 1">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">The prettiest smile in any room ✨</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="together" data-caption="Haseeb & Amina • Laughing until our stomachs hurt 🤍" data-date="Haseeb & Amina">
+          <div class="memory-card">
+            <span class="memory-badge together-badge">#02 💖</span>
+            <div class="memory-img-box">
+              <img src="images/pic2.jpg" alt="Haseeb & Amina 2">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Endless talks, zero filters 🤍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Pure grace and effortless charm 🌸" data-date="Simply Amina">
+          <div class="memory-card">
+            <span class="memory-badge">#03 🌸</span>
+            <div class="memory-img-box">
+              <img src="images/pic3.jpg" alt="Amina 3">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Effortlessly gorgeous, always 🌸</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="together" data-caption="My favorite person in the whole world • Haseeb & Amina 🧸" data-date="Us Forever">
+          <div class="memory-card">
+            <span class="memory-badge together-badge">#04 🧸</span>
+            <div class="memory-img-box">
+              <img src="images/pic4.jpg" alt="Haseeb & Amina 4">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Making every ordinary day special 🧸</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="candid" data-caption="Caught in the middle of being dramatic 😂" data-date="Amina Drama">
+          <div class="memory-card">
+            <span class="memory-badge candid-badge">#05 😜</span>
+            <div class="memory-img-box">
+              <img src="images/pic5.jpg" alt="Amina Candid 5">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">100% drama, 100% cute 😂</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Eyes that reflect pure kindness & warmth 🌷" data-date="Soft Glow">
+          <div class="memory-card">
+            <span class="memory-badge">#06 🌷</span>
+            <div class="memory-img-box">
+              <img src="images/pic6.jpg" alt="Amina 6">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Eyes that reflect pure kindness 🌷</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="candid" data-caption="Amina's candid laughter that makes Haseeb's day ☀️" data-date="Happy Energy">
+          <div class="memory-card">
+            <span class="memory-badge candid-badge">#07 🎀</span>
+            <div class="memory-img-box">
+              <img src="images/pic7.jpg" alt="Amina 7">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Pure warmth & glowing laughter ☀️</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="The most photogenic girl on the planet 🍰" data-date="Stunning">
+          <div class="memory-card">
+            <span class="memory-badge">#08 🍰</span>
+            <div class="memory-img-box">
+              <img src="images/pic8.jpg" alt="Amina 8">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Flawless in every frame 🍰</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Walking sunshine wherever she goes ☀️" data-date="Radiance">
+          <div class="memory-card">
+            <span class="memory-badge">#09 ☀️</span>
+            <div class="memory-img-box">
+              <img src="images/pic9.jpg" alt="Amina 9">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Walking sunshine wherever you go ☀️</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Amina glowing in her natural element 🌸" data-date="Pure Amina">
+          <div class="memory-card">
+            <span class="memory-badge">#10 🦋</span>
+            <div class="memory-img-box">
+              <img src="images/pic10.jpg" alt="Amina 10">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Haseeb’s favorite view, always 🌸</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="candid" data-caption="Amina's signature cute expressions 😜" data-date="Pure Chaos">
+          <div class="memory-card">
+            <span class="memory-badge candid-badge">#11 💫</span>
+            <div class="memory-img-box">
+              <img src="images/pic11.jpg" alt="Amina Candid 11">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Signature silly cuteness 😜</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Dressed up and owning the whole world 👑" data-date="Slay Mode">
+          <div class="memory-card">
+            <span class="memory-badge">#12 👑</span>
+            <div class="memory-img-box">
+              <img src="images/pic12.jpg" alt="Amina 12">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Dressed up & owning the room 👑</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="together" data-caption="Silent comfort, deep talks & loud laughs with Haseeb 💫" data-date="Safe Place">
+          <div class="memory-card">
+            <span class="memory-badge together-badge">#13 🤍</span>
+            <div class="memory-img-box">
+              <img src="images/pic13.jpg" alt="Haseeb & Amina 13">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Silent comfort & loud laughs 💫</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Soft aesthetic and peaceful mind 🕊️" data-date="Calm Energy">
+          <div class="memory-card">
+            <span class="memory-badge">#14 🕊️</span>
+            <div class="memory-img-box">
+              <img src="images/pic14.jpg" alt="Amina 14">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Soft aesthetics & calm energy 🕊️</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="together" data-caption="Two souls, one heartbeat • Haseeb with his Queen Amina 🌸" data-date="Us & Peace">
+          <div class="memory-card">
+            <span class="memory-badge together-badge">#15 🥰</span>
+            <div class="memory-img-box">
+              <img src="images/pic15.jpg" alt="Haseeb & Amina 15">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Completely authentic & real with you 🌸</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Graceful, kind-hearted and simply unmatched ✨" data-date="Angel Energy">
+          <div class="memory-card">
+            <span class="memory-badge">#16 🍓</span>
+            <div class="memory-img-box">
+              <img src="images/pic16.jpg" alt="Amina 16">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Gentle heart & radiant soul ✨</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Amina shining in her own light ✨" data-date="23rd Glow">
+          <div class="memory-card">
+            <span class="memory-badge">#17 🌟</span>
+            <div class="memory-img-box">
+              <img src="images/pic17.jpg" alt="Amina 17">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">The glowing confidence of turning 23 ✨</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Candid and beautiful, always 💖" data-date="Candid Queen">
+          <div class="memory-card">
+            <span class="memory-badge">#18 💖</span>
+            <div class="memory-img-box">
+              <img src="images/pic18.jpg" alt="Amina 18">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Candid &amp; beautiful, always 💖</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="together" data-caption="Haseeb & Amina • Through every chapter of life, forever mine 🤍" data-date="Forever Mine">
+          <div class="memory-card">
+            <span class="memory-badge together-badge">#19 💌</span>
+            <div class="memory-img-box">
+              <img src="images/pic19.jpg" alt="Haseeb & Amina 19">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption">Through every chapter, by your side 🤍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="memory-card-wrap" data-category="amina" data-caption="Born on 27 Nov 2003 • The One & Only Amina • The Masterpiece 👑" data-date="Masterpiece">
+          <div class="memory-card special-golden-card">
+            <span class="memory-badge gold-badge">#20 👑✨</span>
+            <div class="memory-img-box">
+              <img src="images/pic20.jpg" alt="Amina Masterpiece 20">
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption gold-text">Amina • Born 27 Nov 2003 👑</span>
+            </div>
+          </div>
+        </div>
+            </div>
+            <div class="memory-footer">
+              <span class="memory-caption gold-text">Amina • Born 27 Nov 2003 👑</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== POLAROID PHOTOBOOTH STUDIO ==================== -->
+    <section class="photobooth-stage" id="photobooth-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">📸 INTERACTIVE PHOTOBOOTH</span>
+      </div>
+      <h2 class="section-display-title">Amina's Birthday Polaroid Studio</h2>
+      <p class="section-display-sub">
+        Pick your favorite memory, add cute stickers, customize your note & download your keepsake!
+      </p>
+
+      <div class="photobooth-studio-box glass-card">
+        <!-- Interactive Preview Polaroid -->
+        <div class="booth-polaroid-container">
+          <div class="booth-polaroid-frame" id="booth-frame">
+            <div class="booth-photo-wrap" id="booth-photo-wrap">
+              <img src="images/pic1.jpg" id="booth-main-img" alt="Booth Photo">
+              <div class="booth-sticker-overlay" id="booth-sticker-overlay">👑</div>
+            </div>
+            <div class="booth-polaroid-caption">
+              <input type="text" class="booth-caption-input" id="booth-caption-input" value="Happy 23rd Birthday Amina ✨" maxlength="40" aria-label="Polaroid Caption">
+              <span class="booth-date">27.11.2003 • Forever Queen 💖</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="booth-controls-panel">
+          <div class="booth-ctrl-group">
+            <span class="booth-label">1. Choose Amina's Picture:</span>
+            <div class="booth-photo-picker">
+              <button class="booth-photo-btn active" data-src="images/pic1.jpg">🌸 Smile #1</button>
+              <button class="booth-photo-btn" data-src="images/pic3.jpg">🤍 Candid #2</button>
+              <button class="booth-photo-btn" data-src="images/pic9.jpg">✨ Cutie #3</button>
+              <button class="booth-photo-btn" data-src="images/pic20.jpg">👑 Queen #4</button>
+              <button class="booth-photo-btn" data-src="images/pic7.jpg">💫 Glow #5</button>
+              <button class="booth-photo-btn" data-src="images/pic12.jpg">🦋 Angel #6</button>
+            </div>
+          </div>
+
+          <div class="booth-ctrl-group">
+            <span class="booth-label">2. Add Cute Sticker:</span>
+            <div class="booth-stickers-row">
+              <button class="booth-sticker-btn active" data-sticker="👑">👑 Crown</button>
+              <button class="booth-sticker-btn" data-sticker="🐰">🐰 Bunny</button>
+              <button class="booth-sticker-btn" data-sticker="🎀">🎀 Bow</button>
+              <button class="booth-sticker-btn" data-sticker="✨">✨ Sparkles</button>
+              <button class="booth-sticker-btn" data-sticker="💖">💖 Hearts</button>
+              <button class="booth-sticker-btn" data-sticker="🦋">🦋 Butterfly</button>
+              <button class="booth-sticker-btn" data-sticker="🍓">🍓 Berry</button>
+              <button class="booth-sticker-btn" data-sticker="🍰">🍰 Cake</button>
+              <button class="booth-sticker-btn" data-sticker="🌹">🌹 Rose</button>
+            </div>
+          </div>
+
+          <div class="booth-ctrl-group">
+            <span class="booth-label">3. Sticker Position:</span>
+            <div class="booth-pos-row">
+              <button class="booth-pos-btn active" data-pos="top-right">Top Right</button>
+              <button class="booth-pos-btn" data-pos="top-left">Top Left</button>
+              <button class="booth-pos-btn" data-pos="bottom-right">Bottom Right</button>
+              <button class="booth-pos-btn" data-pos="bottom-left">Bottom Left</button>
+              <button class="booth-pos-btn" data-pos="center">Center</button>
+            </div>
+          </div>
+
+          <div class="booth-action-row">
+            <button class="booth-download-btn" id="booth-download-btn">
+              <i class="fa-solid fa-cloud-arrow-down"></i>
+              <span>Download High-Res Polaroid</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightbox-modal">
+      <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+      <div class="lightbox-content">
+        <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="lightbox-arrow left-arrow" id="lightbox-prev" aria-label="Previous Photo">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        
+        <div class="lightbox-image-wrap">
+          <img src="" alt="Full view" id="lightbox-img">
+          <div class="lightbox-caption-bar">
+            <span class="lightbox-tag" id="lightbox-tag">Memory #01</span>
+            <p class="lightbox-text" id="lightbox-caption">Caption text</p>
+          </div>
+        </div>
+
+        <button class="lightbox-arrow right-arrow" id="lightbox-next" aria-label="Next Photo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- INTERACTIVE SURPRISE VAULT (SCRATCH VOUCHER & COMPLIMENTS)     -->
+    <!-- ============================================================== -->
+    <section class="surprises-stage" id="surprises-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">🎁 SPECIAL SURPRISE BOX</span>
+      </div>
+      <h2 class="section-display-title">Interactive Secret Surprises</h2>
+      <p class="section-display-sub">
+        Extra gifts created exclusively for you! Scratch the ticket, pick compliments, and open special envelopes:
+      </p>
+
+      <div class="surprises-bento">
+        
+        <!-- SURPRISE 1: 3 CUTE SCRATCH CARDS -->
+        <div class="surprise-card scratch-feature glass-card triple-scratch-card">
+          <div class="surprise-badge">
+            <i class="fa-solid fa-ticket"></i>
+            <span>SURPRISE #01 • 3 GOLDEN SCRATCH TICKETS</span>
+          </div>
+          <h3 class="surprise-title">Amina's 3 Secret Scratch Vouchers</h3>
+          <p class="surprise-desc">
+            Use your finger or mouse to scratch off each ticket and reveal your 3 exclusive birthday rewards from Haseeb! ✨
+          </p>
+
+          <div class="scratch-cards-grid">
+            <!-- Scratch Card 1: Forever Claim -->
+            <div class="single-scratch-wrapper">
+              <div class="scratch-card-header-tag">Ticket #1 • Romantic 💖</div>
+              <div class="scratch-card-container" data-card="1">
+                <div class="scratch-reward-layer">
+                  <span class="reward-crown">👑 ❤️</span>
+                  <h4 class="reward-title">AMINA, YOU ARE ONLY MINE!</h4>
+                  <p class="reward-text">
+                    "Valid for: My whole heart, endless hugs, and a lifetime of never letting your hand go."
+                  </p>
+                  <span class="reward-code">CLAIM: FOREVER-MINE-2026</span>
+                </div>
+                <canvas class="scratch-canvas" data-scratch="1"></canvas>
+              </div>
+              <p class="scratch-hint">👆 Scratch with finger / mouse!</p>
+            </div>
+
+            <!-- Scratch Card 2: Wish Coupon -->
+            <div class="single-scratch-wrapper">
+              <div class="scratch-card-header-tag">Ticket #2 • Magic Wish 🪄</div>
+              <div class="scratch-card-container" data-card="2">
+                <div class="scratch-reward-layer reward-theme-gold">
+                  <span class="reward-crown">🌟 🎂</span>
+                  <h4 class="reward-title">1 UNCONDITIONAL WISH!</h4>
+                  <p class="reward-text">
+                    "Valid for: Kuch bhi maango Haseeb se—shopping, late night treat, ya long drive, Haseeb bina nakhre ke poora karega!"
+                  </p>
+                  <span class="reward-code">COUPON: HASEEB-YES-MAN-PASS</span>
+                </div>
+                <canvas class="scratch-canvas" data-scratch="2"></canvas>
+              </div>
+              <p class="scratch-hint">👆 Scratch with finger / mouse!</p>
+            </div>
+
+            <!-- Scratch Card 3: Forgiveness / Hug Pass -->
+            <div class="single-scratch-wrapper">
+              <div class="scratch-card-header-tag">Ticket #3 • Mood Lifter 🥰</div>
+              <div class="scratch-card-container" data-card="3">
+                <div class="scratch-reward-layer reward-theme-rose">
+                  <span class="reward-crown">🧸 🌸</span>
+                  <h4 class="reward-title">UNLIMITED HUGS & APOLOGIES!</h4>
+                  <p class="reward-text">
+                    "Valid for: Jab bhi gussa ya upset ho, yeh coupon dikhao—Haseeb foran manayega aur bina debate sorry bolega!"
+                  </p>
+                  <span class="reward-code">PASS: ZERO-ARGUMENTS-CARD</span>
+                </div>
+                <canvas class="scratch-canvas" data-scratch="3"></canvas>
+              </div>
+              <p class="scratch-hint">👆 Scratch with finger / mouse!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SURPRISE 2: COMPLIMENT GENERATOR JAR -->
+        <div class="surprise-card compliment-feature glass-card">
+          <div class="surprise-badge">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>SURPRISE #02 • INFINITE SWEETNESS</span>
+          </div>
+          <h3 class="surprise-title">The Jar of Endless Compliments</h3>
+          <p class="surprise-desc">
+            Whenever you need a reminder of how awesome you are, tap the button to pull out a sweet thought:
+          </p>
+
+          <div class="compliment-dispenser">
+            <div class="cute-jar-icon">
+              <i class="fa-solid fa-jar"></i>
+              <span class="jar-heart">💖</span>
+            </div>
+            
+            <div class="compliment-note-box" id="compliment-display">
+              <p class="compliment-text">"Tap below to pull out a real sweet thought written for Amina ✨"</p>
+            </div>
+
+            <button class="compliment-btn" id="generate-compliment-btn">
+              <span>Pick A Compliment</span>
+              <i class="fa-solid fa-sparkles"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- SURPRISE 3: 3D UNWRAPPABLE GIFT BOXES -->
+        <div class="surprise-card gift-boxes-feature glass-card">
+          <div class="surprise-badge">
+            <i class="fa-solid fa-gift"></i>
+            <span>SURPRISE #03 • UNWRAP YOUR GIFTS</span>
+          </div>
+          <h3 class="surprise-title">3 Secret Birthday Boxes</h3>
+          <p class="surprise-desc">
+            Tap on any gift box to untie the ribbon and see what's packed inside for you!
+          </p>
+
+          <div class="gift-boxes-row">
+            <div class="gift-box-item" data-gift="1">
+              <div class="gift-box-icon">🎁</div>
+              <span class="gift-tag">Box #1 • Kisses & Hugs</span>
+            </div>
+
+            <div class="gift-box-item" data-gift="2">
+              <div class="gift-box-icon">☕</div>
+              <span class="gift-tag">Box #2 • Chai & Ice Cream</span>
+            </div>
+
+            <div class="gift-box-item" data-gift="3">
+              <div class="gift-box-icon">💍</div>
+              <span class="gift-tag">Box #3 • Forever Oath</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SURPRISE 4: "OPEN WHEN..." ENVELOPES -->
+      <div class="open-when-section">
+        <div class="open-when-header">
+          <span class="sticker-chip">SURPRISE #04 • TIME CAPSULES</span>
+          <h3 class="open-when-title">"Open When..." Envelopes</h3>
+          <p class="open-when-sub">Click on an envelope whenever you need comfort in that exact mood:</p>
+        </div>
+
+        <div class="open-when-grid">
+          
+          <div class="open-when-card" data-mood="sad">
+            <div class="ow-envelope-icon">🌧️</div>
+            <h4 class="ow-card-title">Open When You're Sad</h4>
+            <p class="ow-card-preview">When the world feels too loud and heavy...</p>
+            <span class="ow-click-pill">Click to Read ✉️</span>
+          </div>
+
+          <div class="open-when-card" data-mood="miss">
+            <div class="ow-envelope-icon">🌙</div>
+            <h4 class="ow-card-title">Open When You Miss Me</h4>
+            <p class="ow-card-preview">When you just want to talk but can't...</p>
+            <span class="ow-click-pill">Click to Read ✉️</span>
+          </div>
+
+          <div class="open-when-card" data-mood="doubt">
+            <div class="ow-envelope-icon">👑</div>
+            <h4 class="ow-card-title">Open When You Doubt Yourself</h4>
+            <p class="ow-card-preview">When you forget how powerful you are...</p>
+            <span class="ow-click-pill">Click to Read ✉️</span>
+          </div>
+
+          <div class="open-when-card" data-mood="happy">
+            <div class="ow-envelope-icon">🥳</div>
+            <h4 class="ow-card-title">Open When You Want to Smile</h4>
+            <p class="ow-card-preview">A collection of our craziest silly moments...</p>
+            <span class="ow-click-pill">Click to Read ✉️</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN WHEN MODAL POPUP -->
+    <div class="open-when-modal" id="ow-modal">
+      <div class="ow-backdrop" id="ow-backdrop"></div>
+      <div class="ow-modal-box">
+        <button class="ow-close-btn" id="ow-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="ow-modal-stamp" id="ow-modal-stamp">💌 FOR AMINA</div>
+        <h3 class="ow-modal-heading" id="ow-modal-heading">Open When Letter</h3>
+        <div class="ow-modal-body" id="ow-modal-body"></div>
+        <div class="ow-modal-footer">
+          <span>Always here for you ❤️</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GIFT REVEAL MODAL (FOR 3D BOXES) -->
+    <div class="gift-modal" id="gift-modal">
+      <div class="gift-backdrop" id="gift-backdrop"></div>
+      <div class="gift-modal-box">
+        <button class="gift-close-btn" id="gift-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="gift-unwrapped-icon" id="gift-modal-icon">🎁</div>
+        <h3 class="gift-modal-title" id="gift-modal-title">Gift Unwrapped!</h3>
+        <p class="gift-modal-desc" id="gift-modal-desc"></p>
+        <div class="gift-modal-code">CLAIMABLE 24/7 FOR A LIFETIME ❤️</div>
+      </div>
+    </div>
+
+    <!-- ==================== BENTO GRID: REASONS WHY AMINA IS 1 OF 1 ==================== -->
+    <section class="bento-stage" id="bento-cards">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">💌 THE AMINA ARCHIVE</span>
+      </div>
+      <h2 class="section-display-title">Reasons Why You're One in a Billion</h2>
+      <p class="section-display-sub">
+        Curated notes, honest compliments, and the little details that make you irreplaceable:
+      </p>
+
+      <div class="bento-gallery">
+        
+        <div class="bento-item bento-large glass-card">
+          <div class="bento-header">
+            <span class="sticker-chip">#01 • THERAPY VIBES</span>
+            <span class="date-stamp">Amina Special</span>
+          </div>
+          <h3 class="bento-title-serif">Your Laugh Is Pure Medicine</h3>
+          <p class="bento-body-text">
+            There is something undeniably healing about the way you smile. It's unpretentious, effortless, and 
+            lights up whatever space you're in. Even when the world feels heavy and complicated, just sharing a 
+            laugh with you puts everything back in perspective.
+          </p>
+          <div class="bento-footer-cursive">
+            ~ "A smile that could melt the coldest day" 🌸
+          </div>
+        </div>
+
+        <div class="bento-item bento-tall glass-card">
+          <div class="bento-header">
+            <span class="sticker-chip">#02 • CONFIDENTIAL</span>
+            <i class="fa-solid fa-heart-circle-check heart-accent"></i>
+          </div>
+          <h3 class="bento-title-modern">Little Things I Secretly Adore About You</h3>
+          <ul class="aesthetic-checklist">
+            <li>
+              <span class="check-icon">✓</span>
+              <span>The way you get passionate when talking about things you love.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Your cute facial expressions when you're confused or dramatic.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>How you remember small details even when I think you forgot.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Your soft heart that cares so much for the people around you.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>The sense of calm and safety you bring without even trying.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ROMANTIC DECLARATION CARD: YOU ARE ONLY MINE -->
+        <div class="bento-item bento-quote glass-card mine-highlight-card">
+          <div class="mine-badge-row">
+            <span class="sticker-chip gold-chip">💍 FOREVER & ALWAYS</span>
+            <span class="heart-pulse-icon">💖</span>
+          </div>
+          <div class="quote-symbol">“</div>
+          <h3 class="mine-main-quote">
+            "Amina, You Are Only Mine, And I Am Your Everything."
+          </h3>
+          <p class="mine-sub-quote">
+            Out of 8 billion souls on this earth, my heart chose you without a second thought. You are my home, my peace, and my greatest blessing. Never doubt it for even a single second: you belong with me, and I am yours forever.
+          </p>
+          <div class="quote-author">— Forever Yours, Only Yours ❤️</div>
+        </div>
+
+        <div class="bento-item bento-spotify glass-card">
+          <div class="spotify-header">
+            <i class="fa-brands fa-spotify spotify-icon"></i>
+            <span>VIBE CHECK</span>
+          </div>
+          <div class="album-art-fake">
+            <span class="cassette-emoji">🎧</span>
+          </div>
+          <h4 class="track-title">Amina's Golden Aura</h4>
+          <p class="track-subtitle">Track 1 • The Kindest Soul (3:24)</p>
+          <div class="progress-bar-fake">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="time-tags">
+            <span>1:52</span>
+            <span>-1:32</span>
+          </div>
+        </div>
+
+        <div class="bento-item bento-wide glass-card">
+          <div class="bento-header">
+            <span class="sticker-chip">#03 • OUR UNIVERSE</span>
+            <span class="star-badge">🌙 2:00 AM</span>
+          </div>
+          <h3 class="bento-title-serif">Our Endless Talks & Shared Chaos</h3>
+          <p class="bento-body-text">
+            Whether we are discussing the most trivial silly gossips, ranting about life, laughing until our stomachs hurt, 
+            or sitting in comfortable silence—having you in my corner is a comfort I wouldn't trade for anything in this world.
+          </p>
+          <div class="pill-row">
+            <span class="mini-pill">Inside Jokes 🤪</span>
+            <span class="mini-pill">Safe Space 🤍</span>
+            <span class="mini-pill">No Filter 🤝</span>
+          </div>
+        </div>
+
+        <div class="bento-item bento-medium glass-card">
+          <div class="bento-header">
+            <span class="sticker-chip">#04 • RESILIENCE</span>
+            <i class="fa-solid fa-crown crown-accent"></i>
+          </div>
+          <h3 class="bento-title-modern">A Real Queen's Grace</h3>
+          <p class="bento-body-text">
+            Life isn't always easy, but the strength and dignity with which you handle everything is awe-inspiring. 
+            You are so much stronger, smarter, and more capable than you give yourself credit for.
+          </p>
+        </div>
+
+        <div class="bento-item bento-wishes glass-card">
+          <div class="bento-header">
+            <span class="sticker-chip">#05 • MANIFESTATIONS</span>
+            <span class="sparkle-spark">✨</span>
+          </div>
+          <h3 class="bento-title-serif">My Blessings For Chapter 23</h3>
+          <div class="wishes-tags-cloud">
+            <span class="wish-cloud-tag">Unlimited Peace 🕊️</span>
+            <span class="wish-cloud-tag">Dream Careers 💼</span>
+            <span class="wish-cloud-tag">Zero Overthinking 🧠</span>
+            <span class="wish-cloud-tag">Clear Glowing Skin 🌸</span>
+            <span class="wish-cloud-tag">Endless Travel ✈️</span>
+            <span class="wish-cloud-tag">True Happiness Always 💖</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== THE AMINA GALAXY CONSTELLATION ==================== -->
+    <section class="constellation-stage" id="constellation-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">🌌 CELESTIAL MEMORIES</span>
+      </div>
+      <h2 class="section-display-title">The Amina Constellation Map</h2>
+      <p class="section-display-sub">
+        Tap on each glowing star in the night sky to unlock our special milestones:
+      </p>
+
+      <div class="constellation-sky-card glass-card">
+        <div class="constellation-canvas-wrap">
+          <button class="celestial-star star-1 active" data-star="1">
+            <span class="star-icon">⭐</span>
+            <span class="star-title">Star #1</span>
+          </button>
+          <button class="celestial-star star-2" data-star="2">
+            <span class="star-icon">⭐</span>
+            <span class="star-title">Star #2</span>
+          </button>
+          <button class="celestial-star star-3" data-star="3">
+            <span class="star-icon">⭐</span>
+            <span class="star-title">Star #3</span>
+          </button>
+          <button class="celestial-star star-4" data-star="4">
+            <span class="star-icon">⭐</span>
+            <span class="star-title">Star #4</span>
+          </button>
+          <button class="celestial-star star-5" data-star="5">
+            <span class="star-icon">⭐</span>
+            <span class="star-title">Star #5</span>
+          </button>
+        </div>
+
+        <div class="constellation-story-box" id="constellation-story">
+          <span class="constellation-badge" id="c-star-badge">STAR #1 • THE FIRST CHAPTER</span>
+          <h3 class="constellation-heading" id="c-star-title">The Day We First Spoke ✨</h3>
+          <p class="constellation-desc" id="c-star-desc">
+            "I had no idea back then that a simple first conversation would turn you into the most important person in my entire universe."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2027 FUTURE TIME CAPSULE ==================== -->
+    <section class="timecapsule-stage" id="timecapsule-area">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">⏳ FUTURE VAULT</span>
+      </div>
+      <h2 class="section-display-title">The 2027 Future Time Capsule</h2>
+      <p class="section-display-sub">
+        A secret promise locked away until your 24th Birthday on 27th November 2027:
+      </p>
+
+      <div class="timecapsule-card glass-card">
+        <div class="capsule-icon-wrap">
+          <i class="fa-solid fa-hourglass-start pulse-hourglass"></i>
+        </div>
+        <h3 class="capsule-title">DO NOT OPEN UNTIL 27 NOV 2027</h3>
+        <p class="capsule-countdown-text">
+          Locked for 365+ Days • Chapter 24 Awaits
+        </p>
+
+        <div class="capsule-teaser-box">
+          <div class="capsule-lock-seal">
+            <i class="fa-solid fa-lock"></i>
+            <span>SEALED WITH LOVE</span>
+          </div>
+          <p class="capsule-teaser-quote">
+            "Wherever life takes us next year, I promise you one thing: I will still be right beside you, holding your hand, cheering for your dreams, and loving you more than today. That is my forever contract with you."
+          </p>
+        </div>
+
+        <div class="capsule-pill-badge">
+          <span>🔒 Contract Signed for Chapter 24 & Beyond</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WAX-SEALED VINTAGE LETTER ==================== -->
+    <section class="letter-stage">
+      <div class="section-tag-row">
+        <span class="aesthetic-pill">💌 CONFIDENTIAL LETTER</span>
+      </div>
+      <h2 class="section-display-title">A Letter From The Deepest Corner</h2>
+      <p class="section-display-sub">Tap on the wax heart seal to break the seal and unfold the parchment:</p>
+
+      <div class="wax-envelope-wrap" id="envelope-wrap">
+        <div class="vintage-envelope" id="vintage-envelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-top-flap" id="envelope-flap"></div>
+          <div class="envelope-front"></div>
+          
+          <div class="wax-heart-seal" id="wax-heart-seal" title="Click to open letter">
+            <span class="wax-symbol">❤️</span>
+            <span class="wax-text">AMINA</span>
+          </div>
+
+          <div class="envelope-preview-hint">
+            <span>✨ Tap Wax Seal To Open Letter ✨</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gorgeous Fullscreen Popup Letter Modal -->
+      <div class="letter-modal-backdrop hidden" id="letter-modal-backdrop">
+        <div class="letter-modal-container">
+          <button class="letter-modal-close" id="letter-modal-close" aria-label="Close Letter">✕</button>
+          
+          <div class="parchment-modal-card" id="parchment-modal-card">
+            <!-- Magic quill & floating sparkles -->
+            <div class="quill-pen-indicator" id="quill-pen-indicator">🪶</div>
+
+            <div class="parchment-border">
+              <div class="parchment-header">
+                <span class="parchment-stamp">🎂 27.11.2003</span>
+                <span class="parchment-city">💌 From Haseeb's Heart To Amina</span>
+              </div>
+
+              <!-- Animated Typewriter Letter Content -->
+              <div class="letter-animated-body" id="letter-animated-body">
+                <!-- Content will be typed out word-by-word with magical animation -->
+              </div>
+
+              <div class="parchment-sign-off" id="parchment-sign-off" style="opacity: 0; transition: opacity 0.8s ease;">
+                <p>Hamesha aur hamesha ke liye,</p>
+                <p class="handwritten-sign">Tumhara Apna Haseeb ❤️</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="love-blast-box">
+        <button class="love-explosion-btn" id="love-explosion-btn">
+          <span class="sparkle-icon">✨</span>
+          <span>Click For An Endless Virtual Hug & Love Burst!</span>
+          <span class="heart-icon">💖</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="aesthetic-footer">
+      <div class="footer-inner">
+        <div class="footer-heart-symbol">🤍</div>
+        <p class="footer-main-text">Handcrafted with boundless love for Amina</p>
+        <p class="footer-sub-text">Born on 27th November 2003 • Celebrated Forever</p>
+        <div class="footer-tags">
+          <span>Passcode: 1527</span>
+          <span>•</span>
+          <span>Golden 23</span>
+          <span>•</span>
+          <span>Always & Forever</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

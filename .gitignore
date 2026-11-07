@@ -1,0 +1,8 @@
+# Temporary / Raw media files (keep only final optimized assets)
+assets/WhatsApp Video*.mp4
+assets/nastelbom-happy-birthday-*.mp3
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.tmp
