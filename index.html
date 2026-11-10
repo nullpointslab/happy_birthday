@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy 23rd Birthday Amina! 🎂✨</title>
+
+  <!-- WhatsApp, Instagram & Social Sharing Preview (OpenGraph) -->
+  <meta name="description" content="Celebrating 23 glorious years of Amina! Handcrafted with all my heart by Haseeb 💖">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Happy 23rd Birthday Amina! 🎂👑✨">
+  <meta property="og:description" content="A magical birthday portal handcrafted exclusively for Amina by Haseeb. Tap to unlock your surprise! 💖">
+  <meta property="og:image" content="images/pic20.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Happy 23rd Birthday Amina! 🎂👑✨">
+  <meta name="twitter:description" content="A magical birthday portal handcrafted exclusively for Amina by Haseeb. Tap to unlock your surprise! 💖">
+  <meta name="twitter:image" content="images/pic20.jpg">
+  <meta name="theme-color" content="#070d1e">
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
 
@@ -128,9 +142,17 @@
         <span class="dock-title">Amina's Birthday Track 🎵</span>
         <span class="dock-artist">Now Playing • Infinite Love</span>
       </div>
-      <button class="dock-play-btn" id="music-toggle-btn" aria-label="Toggle Audio">
-        <i class="fa-solid fa-pause" id="music-icon"></i>
-      </button>
+      <div class="dock-controls-group">
+        <button class="dock-track-btn" id="music-prev-btn" title="Previous Song" aria-label="Previous Song">
+          <i class="fa-solid fa-backward-step"></i>
+        </button>
+        <button class="dock-play-btn" id="music-toggle-btn" aria-label="Toggle Audio">
+          <i class="fa-solid fa-pause" id="music-icon"></i>
+        </button>
+        <button class="dock-track-btn" id="music-next-btn" title="Next Song" aria-label="Next Song">
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+      </div>
     </div>
 
     <!-- Hidden HTML5 Audio -->
@@ -173,6 +195,10 @@
           <a href="#cake-area" class="cta-primary-btn">
             <span>Make Your Wish 🎂</span>
             <i class="fa-solid fa-cake-candles"></i>
+          </a>
+          <a href="#video-reels-area" class="cta-video-btn">
+            <span>Our 17 Video Reels 🎬</span>
+            <i class="fa-solid fa-film"></i>
           </a>
           <a href="#love-game-area" class="cta-love-btn">
             <span>Do You Love Me? 🥺👉👈</span>

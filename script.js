@@ -282,12 +282,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // 3. BACKGROUND MUSIC & FLOATING PLAYER
+  // 3. BACKGROUND MUSIC & MULTI-TRACK PLAYER
   // ==========================================
   const bgAudio = document.getElementById('bg-audio');
   const musicToggleBtn = document.getElementById('music-toggle-btn');
+  const musicPrevBtn = document.getElementById('music-prev-btn');
+  const musicNextBtn = document.getElementById('music-next-btn');
   const musicIcon = document.getElementById('music-icon');
   const discSpin = document.getElementById('disc-spin');
+  const dockTitle = document.querySelector('.dock-title');
+  const dockArtist = document.querySelector('.dock-artist');
+
+  const playlist = [
+    {
+      title: "Amina's Birthday Track 🎵",
+      artist: "Now Playing • Happy Birthday Special",
+      src: "assets/music.mp3"
+    },
+    {
+      title: "Romantic Piano Melody 🎹",
+      artist: "Now Playing • Pure Love Theme",
+      src: "assets/romantic_piano_loop.mp3"
+    }
+  ];
+  let currentTrackIdx = 0;
+
+  function loadTrack(idx, autoPlay = true) {
+    currentTrackIdx = (idx + playlist.length) % playlist.length;
+    const track = playlist[currentTrackIdx];
+    if (bgAudio) {
+      bgAudio.src = track.src;
+      bgAudio.load();
+      if (dockTitle) dockTitle.textContent = track.title;
+      if (dockArtist) dockArtist.textContent = track.artist;
+      if (autoPlay) {
+        bgAudio.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+      }
+    }
+  }
 
   function startBackgroundMusic() {
     if (bgAudio) {
@@ -315,7 +347,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (musicToggleBtn && bgAudio) {
-    musicToggleBtn.addEventListener('click', () => {
+    musicToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       initAudio();
       if (bgAudio.paused) {
         bgAudio.play().then(() => {
@@ -327,6 +360,20 @@ document.addEventListener('DOMContentLoaded', () => {
         bgAudio.pause();
         updateMusicUI(false);
       }
+    });
+  }
+
+  if (musicPrevBtn) {
+    musicPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      loadTrack(currentTrackIdx - 1, true);
+    });
+  }
+
+  if (musicNextBtn) {
+    musicNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      loadTrack(currentTrackIdx + 1, true);
     });
   }
 
