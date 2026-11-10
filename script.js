@@ -2128,5 +2128,147 @@ function initScratchCard() {
     });
   });
 
+
+  // ==========================================
+  // 22. AMINA'S EXCLUSIVE VIDEO REELS ENGINE
+  // ==========================================
+  const reelsTrack = document.getElementById('video-reels-track');
+  const reelsPrevBtn = document.getElementById('reels-prev-btn');
+  const reelsNextBtn = document.getElementById('reels-next-btn');
+  const reelCards = document.querySelectorAll('.video-reel-card');
+
+  let activePlayingVideo = null;
+  let bgMusicWasPlayingBeforeReel = false;
+
+  if (reelsPrevBtn && reelsTrack) {
+    reelsPrevBtn.addEventListener('click', () => {
+      reelsTrack.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+  }
+
+  if (reelsNextBtn && reelsTrack) {
+    reelsNextBtn.addEventListener('click', () => {
+      reelsTrack.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  }
+
+  function pauseBackgroundForVideo() {
+    if (bgAudio && !bgAudio.paused) {
+      bgMusicWasPlayingBeforeReel = true;
+      bgAudio.pause();
+      if (typeof updateMusicUI === 'function') updateMusicUI(false);
+    }
+  }
+
+  function resumeBackgroundAfterVideo() {
+    // Only resume if no other video is currently playing
+    const anyPlaying = Array.from(document.querySelectorAll('.reel-video-player')).some(v => !v.paused);
+    if (!anyPlaying && bgMusicWasPlayingBeforeReel && bgAudio && bgAudio.paused) {
+      bgAudio.play().then(() => {
+        if (typeof updateMusicUI === 'function') updateMusicUI(true);
+      }).catch(() => {});
+      bgMusicWasPlayingBeforeReel = false;
+    }
+  }
+
+  reelCards.forEach((card) => {
+    const video = card.querySelector('.reel-video-player');
+    const playOverlay = card.querySelector('.video-play-overlay');
+    const playToggleBtn = card.querySelector('.play-toggle-btn');
+    const fullscreenBtn = card.querySelector('.fullscreen-btn');
+    const durationPill = card.querySelector('.video-duration-pill');
+
+    if (!video) return;
+
+    // Display duration once loaded
+    video.addEventListener('loadedmetadata', () => {
+      const mins = Math.floor(video.duration / 60);
+      const secs = Math.floor(video.duration % 60);
+      if (durationPill) {
+        durationPill.innerHTML = `<i class="fa-solid fa-play"></i> ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      }
+    });
+
+    function togglePlay() {
+      // Pause any other video that was playing
+      if (activePlayingVideo && activePlayingVideo !== video) {
+        activePlayingVideo.pause();
+        const otherCard = activePlayingVideo.closest('.video-reel-card');
+        if (otherCard) {
+          otherCard.classList.remove('is-playing');
+          const btn = otherCard.querySelector('.play-toggle-btn span');
+          const icon = otherCard.querySelector('.play-toggle-btn i');
+          if (btn) btn.textContent = 'Play';
+          if (icon) { icon.className = 'fa-solid fa-play'; }
+        }
+      }
+
+      if (video.paused) {
+        pauseBackgroundForVideo();
+        video.play().then(() => {
+          card.classList.add('is-playing');
+          activePlayingVideo = video;
+          if (playToggleBtn) {
+            playToggleBtn.querySelector('span').textContent = 'Pause';
+            playToggleBtn.querySelector('i').className = 'fa-solid fa-pause';
+          }
+        }).catch(err => {
+          console.warn('Video play blocked', err);
+        });
+      } else {
+        video.pause();
+        card.classList.remove('is-playing');
+        if (playToggleBtn) {
+          playToggleBtn.querySelector('span').textContent = 'Play';
+          playToggleBtn.querySelector('i').className = 'fa-solid fa-play';
+        }
+        resumeBackgroundAfterVideo();
+      }
+    }
+
+    if (playOverlay) {
+      playOverlay.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlay();
+      });
+    }
+
+    if (video) {
+      video.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlay();
+      });
+
+      video.addEventListener('ended', () => {
+        card.classList.remove('is-playing');
+        if (playToggleBtn) {
+          playToggleBtn.querySelector('span').textContent = 'Replay';
+          playToggleBtn.querySelector('i').className = 'fa-solid fa-rotate-right';
+        }
+        resumeBackgroundAfterVideo();
+      });
+    }
+
+    if (playToggleBtn) {
+      playToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlay();
+      });
+    }
+
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+      });
+    }
+  });
+
 });
 
